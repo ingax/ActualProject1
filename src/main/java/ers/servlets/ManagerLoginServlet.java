@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,8 +42,10 @@ public class ManagerLoginServlet extends HttpServlet {
 			System.out.println("Null cred");
 		}
 		else if(service.checkManager(username, password)){
-			System.out.println("User passed back to ManagerLoginServlet");
+			HttpSession session = request.getSession();
+			session.setAttribute("managerName", username);
 			response.sendRedirect("ERS/managers.html");
+			return;
 		}
 		else {
 			response.getOutputStream().write(mapper.writeValueAsBytes("Invalid credentials"));

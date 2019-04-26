@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionMaker;
+//import ers.beans.Employees;
 import ers.beans.Managers;
 import ers.dao.ManagerDao;
 
@@ -28,8 +29,20 @@ public class ManagerDaoImpl implements ManagerDao{
 		return null;
 	}
 	public Managers getManagerById(String manager_id) {
+		try (Connection conn = ConnectionMaker.getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ers_managers WHERE id = ?" + manager_id);
+			stmt.setString(1,  manager_id);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				return new Managers(rs.getString("manager_id"), rs.getString("first_name"),
+						rs.getString("last_name"), rs.getString("password"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
+	
 	public Managers createManager(Managers m) {
 		try (Connection conn = ConnectionMaker.getConnection()){
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO ers_managers VALUES (?, ?, ?");

@@ -6,37 +6,40 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class FormRequestServlet
+ * Servlet implementation class LogoutServlet
  */
-public class FormRequestServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	private static final ObjectMapper mapper = new ObjectMapper();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormRequestServlet() {
+    public LogoutServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
-		response.getOutputStream().write(mapper.writeValueAsBytes(FormRequest.doGet(request, response)));
+		HttpSession session = request.getSession(false);
+		
+		if(session != null)
+			session.invalidate();
+		
+		response.sendRedirect("./homepage.html");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
-		response.getOutputStream().write(mapper.writeValueAsBytes(FormRequest.doPost(request, response)));
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

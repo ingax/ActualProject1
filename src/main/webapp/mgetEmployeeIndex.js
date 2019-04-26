@@ -26,7 +26,7 @@ const makeTable = (listOfEmployees) => {
 		const empPn = document.createElement("td");
 		const empEmail = document.createElement("td");
 		
-		empId.textContent = employee.employee_id;
+		empId.textContent = employee.employee_Id;
 		empFn.textContent = employee.first_name;
 		empLn.textContent = employee.last_name;
 		empAddress.textContent = employee.address;

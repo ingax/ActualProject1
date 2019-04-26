@@ -3,7 +3,7 @@ package ers.beans;
 
 public class Forms {
 	private int form_id;
-	private float amount;
+	private double amount;
 	private String reason;
 	private String decisionMade;
 	private String employee_id;
@@ -14,11 +14,11 @@ public class Forms {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Forms(int form_id, float amount, String reason, String decisionMade,
+	public Forms(int form_id, double d, String reason, String decisionMade,
 			String employee_id, String manager_id) {
 		super();
 		this.form_id = form_id;
-		this.amount = amount;
+		this.amount = d;
 		this.reason = reason;
 		this.decisionMade = decisionMade;
 		this.employee_id = employee_id;
@@ -33,7 +33,7 @@ public class Forms {
 		this.form_id = form_id;
 	}
 
-	public float getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
@@ -77,7 +77,9 @@ public class Forms {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Float.floatToIntBits(amount);
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((decisionMade == null) ? 0 : decisionMade.hashCode());
 		result = prime * result + ((employee_id == null) ? 0 : employee_id.hashCode());
 		result = prime * result + form_id;
@@ -95,7 +97,7 @@ public class Forms {
 		if (getClass() != obj.getClass())
 			return false;
 		Forms other = (Forms) obj;
-		if (Float.floatToIntBits(amount) != Float.floatToIntBits(other.amount))
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
 		if (decisionMade == null) {
 			if (other.decisionMade != null)
@@ -127,11 +129,8 @@ public class Forms {
 		return "Forms [form_id=" + form_id + ", amount=" + amount + ", reason=" + reason + ", decisionMade="
 				+ decisionMade + ", employee_id=" + employee_id + ", manager_id=" + manager_id + "]";
 	}
+
 	
-	
-
-
-
 	
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,12 +26,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public Employees getEmployeeById(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			String id = mapper.readValue(request.getInputStream(), String.class);
-			return eDao.getEmployeeById(id);
-		}catch(IOException e) {
-			return null;
-		}
+			System.out.println("empservice");
+			HttpSession session = request.getSession(false);
+			String employeeById = (String) session.getAttribute("employeeName");
+			System.out.println("employee in EmpServImp testing session " + employeeById);
+			if(employeeById == null)
+				return new Employees();
+			
+			return eDao.getEmployeeById(employeeById);
 	}
 
 	@Override

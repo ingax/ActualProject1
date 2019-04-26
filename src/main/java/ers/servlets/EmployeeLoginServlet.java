@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -43,6 +44,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 		
 		else if(service.checkEmployee(username, password)){
 			System.out.println("User passed back to EmployeeLoginServlet");
+			HttpSession session = request.getSession();
+			session.setAttribute("employeeName", username);
 			response.sendRedirect("ERS/employees.html");
 		}
 		

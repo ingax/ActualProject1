@@ -36,8 +36,8 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	
 	public Employees getEmployeeById(String employee_id) {
 			try (Connection conn = ConnectionMaker.getConnection()){
-				PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ers_employees WHERE id =?");
-				stmt.setString(1,  employee_id);
+				PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ers_employees WHERE employee_id = ?");
+				stmt.setString(1, employee_id);
 				ResultSet rs = stmt.executeQuery();
 				if(rs.next()) {
 					return new Employees(rs.getString("employee_id"), rs.getString("first_name"),

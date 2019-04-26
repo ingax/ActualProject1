@@ -36,7 +36,7 @@ public class FrontControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
-		response.getOutputStream().write(mapper.writeValueAsBytes(FrontController.process(request, response)));
+		response.getOutputStream().write(mapper.writeValueAsBytes(FrontController.processPost(request, response)));
 		System.out.println("Successfully");
 	}
 

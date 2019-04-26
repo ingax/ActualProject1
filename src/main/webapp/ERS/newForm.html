@@ -24,7 +24,7 @@
 					<a href="newForm.html"> New Form </a>
 				</li>
 				<li>
-					<a href="../homepage.html"><span class = "glyphicon glyphicon-log-out"> Logout</span></a>
+					<a href="../LogoutServlet"><span class = "glyphicon glyphicon-log-out"> Logout</span></a>
 				</li>				
 			</ul>
 		</div>
@@ -32,13 +32,30 @@
 </div>
 
 <h2> Create a New Form </h2>
-	<form action = "../FormRequestServlet" method = "POST">
-		<input name = "FormNum" type = "text" placeholder="formId"><br>
-		<input name = "amt" type = "text" placeholder="amount"><br>
-		<input name = "rsn" type = "text" placeholder="reason"><br>
-		<input name = "emplid" type = "text" placeholder="Employee id"><br>
-		<input type = "submit" value="Sumbit">
+
+	<form style="float:left; width: 33%; text-align:center">
+		Form ID:<br>
+		<input name = "FormNum" type = "text" id ="form_id"><br>
+		Amount:<br>
+		<input name = "amt" type = "text" id ="amount"><br>
+		Reason:<br>
+		<input name = "rsn" type = "text" id ="reason"><br>
+		Employee ID:<br>
+		<input name = "emplid" type = "text" id ="employee_id"><br>
+		<button type="button" id = "createForm">Submit Form</button>
 	</form>
+	
+	<table style="float:left; width: 50%; text-align:center">
+		<thead>
+			<tr>
+				<th>Form Id</th>
+				<th>Amount</th>
+				<th>Reason</th>
+				<th>Employee Id</th>
+			</tr>
+		</thead>
+		<tbody id = "FormTable"></tbody>
+	</table>
 
 <script src = "../formsIndex.js"></script>
 </body>

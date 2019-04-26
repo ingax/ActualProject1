@@ -20,7 +20,7 @@ public class FrontController {
 	
 	private FrontController() {}
 	
-	public static Object process (HttpServletRequest request, HttpServletResponse response) {
+	public static Object process(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in frontController get");
 		final String uri = request.getRequestURI().replace("/ERS/api", "");
 		System.out.println(uri);
@@ -31,14 +31,15 @@ public class FrontController {
 			return eService.getEmployeeById(request, response);
 		case "/managers":
 			return mService.getAllManagers(request, response);
-		case"/forms":
+		case "/forms":
 			return fService.getAllForms(request, response);
+		case "/getForms":
+			return fService.getFormById(request, response); //Do session
 		default:
 			return Collections.singletonMap("message", "Employees not implemented");
 		}
 	}
 	public static Object processPost (HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("in frontController post");
 		final String uri = request.getRequestURI().replace("/ERS/api", "");
 		System.out.println(uri);
 		switch(uri) {
